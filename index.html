@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RahulMovies – Find Where to Watch</title>
-
-<meta name="description" content="RahulMovies helps you find movies, ratings, trailers and official viewing options.">
+<title>RahulMovies – Movie Search</title>
 
 <style>
 *{
@@ -18,47 +16,48 @@
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#090a0f;
-  color:#fff;
+  color:white;
 }
 
 header{
   padding:20px 6%;
-  border-bottom:1px solid #22242d;
+  border-bottom:1px solid #252631;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
-  font-size:28px;
+  font-size:27px;
   font-weight:800;
 }
 
 .logo span{
-  color:#e50914;
+  color:#ed0712;
 }
 
-.container{
-  max-width:1150px;
-  margin:auto;
-  padding:0 20px;
+nav a{
+  color:#aaa;
+  text-decoration:none;
+  margin-left:20px;
 }
 
 .hero{
-  padding:70px 0 45px;
+  max-width:1100px;
+  margin:auto;
+  padding:70px 6% 35px;
 }
 
 .hero h1{
   font-size:48px;
-  line-height:1.1;
-  margin-bottom:15px;
+  line-height:1.05;
+  margin-bottom:18px;
 }
 
 .hero p{
-  color:#aeb1bd;
-  font-size:18px;
+  color:#aeb0bd;
+  font-size:19px;
   line-height:1.6;
-  max-width:700px;
 }
 
 .search-box{
@@ -70,8 +69,8 @@ header{
 .search-box input{
   flex:1;
   padding:18px;
-  border-radius:12px;
-  border:1px solid #30333d;
+  border-radius:14px;
+  border:1px solid #30323e;
   background:#151720;
   color:white;
   font-size:17px;
@@ -79,76 +78,59 @@ header{
 }
 
 .search-box button{
-  padding:0 30px;
-  border:none;
-  border-radius:12px;
-  background:#e50914;
+  width:130px;
+  border:0;
+  border-radius:14px;
+  background:#ed0712;
   color:white;
+  font-size:17px;
   font-weight:bold;
-  font-size:16px;
   cursor:pointer;
-}
-
-.search-box button:hover{
-  background:#ff1722;
 }
 
 .notice{
   margin-top:25px;
   padding:18px;
-  border:1px solid #292c36;
-  background:#12141b;
-  border-radius:12px;
-  color:#aeb1bd;
-  line-height:1.5;
+  background:#12151c;
+  border:1px solid #292c38;
+  border-radius:15px;
+  color:#aeb0bd;
+  line-height:1.6;
 }
 
 section{
-  padding:30px 0;
+  max-width:1100px;
+  margin:auto;
+  padding:25px 6%;
 }
 
 .section-title{
-  font-size:28px;
+  font-size:30px;
   margin-bottom:25px;
 }
 
 .movies{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
 .card{
   background:#14171f;
-  border:1px solid #282b35;
-  border-radius:14px;
+  border:1px solid #282b36;
+  border-radius:15px;
   overflow:hidden;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#e50914;
 }
 
 .poster{
-  height:280px;
-  background:#20232c;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#777;
-  overflow:hidden;
-}
-
-.poster img{
   width:100%;
-  height:100%;
+  height:300px;
   object-fit:cover;
+  background:#1d2029;
 }
 
 .info{
-  padding:15px;
+  padding:14px;
 }
 
 .info h3{
@@ -157,84 +139,73 @@ section{
 }
 
 .info p{
-  color:#999;
+  color:#999daa;
   font-size:14px;
-  margin-bottom:12px;
+  margin:5px 0;
 }
 
 .buttons{
   display:flex;
-  flex-direction:column;
   gap:8px;
+  margin-top:12px;
 }
 
 .btn{
-  display:block;
-  text-align:center;
-  text-decoration:none;
+  flex:1;
   padding:10px;
+  text-align:center;
   border-radius:8px;
-  font-size:14px;
+  text-decoration:none;
+  background:#ed0712;
+  color:white;
+  font-size:13px;
   font-weight:bold;
 }
 
-.imdb{
-  background:#f5c518;
-  color:#000;
+.btn.secondary{
+  background:#292c36;
 }
 
-.youtube{
-  background:#ff0000;
-  color:#fff;
-}
-
-.netflix{
-  background:#111;
-  border:1px solid #444;
-  color:white;
-}
-
-.empty{
-  color:#888;
-  padding:30px 0;
-  text-align:center;
-}
-
-.loading{
-  display:none;
-  color:#aaa;
+#results{
   margin-top:20px;
 }
 
-footer{
-  margin-top:60px;
-  padding:35px 20px;
-  border-top:1px solid #22242d;
+.loading{
   text-align:center;
-  color:#777;
-  line-height:1.7;
+  color:#aaa;
+  padding:30px;
 }
 
-@media(max-width:600px){
+.error{
+  color:#ff6971;
+  padding:20px 0;
+}
 
-  .hero{
-    padding-top:45px;
+@media(max-width:800px){
+  .movies{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .poster{
+    height:250px;
   }
 
   .hero h1{
-    font-size:36px;
+    font-size:38px;
   }
+}
 
+@media(max-width:500px){
   .search-box{
     flex-direction:column;
   }
 
   .search-box button{
+    width:100%;
     padding:16px;
   }
 
   .movies{
-    grid-template-columns:repeat(2,1fr);
     gap:12px;
   }
 
@@ -242,12 +213,8 @@ footer{
     height:230px;
   }
 
-  .info{
-    padding:10px;
-  }
-
-  .info h3{
-    font-size:15px;
+  .hero{
+    padding-top:45px;
   }
 }
 </style>
@@ -256,264 +223,173 @@ footer{
 <body>
 
 <header>
-  <div class="logo">
-    Rahul<span>Movies</span>
-  </div>
+  <div class="logo">Rahul<span>Movies</span></div>
+
+  <nav>
+    <a href="#popular">Popular</a>
+  </nav>
 </header>
 
-<main class="container">
 
-<section class="hero">
+<div class="hero">
 
-<h1>Find where to watch your next movie.</h1>
+  <h1>Find your next movie.</h1>
 
-<p>
-Movie information, posters, ratings and official viewing options —
-all in one simple place.
-</p>
+  <p>
+    Search movies, discover ratings, posters, release dates
+    and official trailers — all in one place.
+  </p>
 
-<div class="search-box">
+  <div class="search-box">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search a movie..."
+    >
 
-<input
-  type="text"
-  id="searchInput"
-  placeholder="Search a movie..."
-  autocomplete="off"
->
+    <button onclick="searchMovies()">
+      Search
+    </button>
+  </div>
 
-<button onclick="searchMovie()">Search</button>
+  <div class="notice">
+    ⚠️ RahulMovies does not host, upload or provide
+    pirated movie files. Viewing buttons should lead only
+    to legitimate movie information or official platforms.
+  </div>
 
 </div>
 
-<div class="loading" id="loading">
-Searching movies...
-</div>
 
-<div class="notice">
-⚠️ RahulMovies does not host, upload or provide pirated movie files.
-Viewing buttons should lead only to legitimate platforms or movie information pages.
-</div>
+<section id="popular">
+
+  <h2 class="section-title">🔥 Popular Movies</h2>
+
+  <div id="results" class="movies"></div>
 
 </section>
-
-
-<section>
-
-<h2 class="section-title">🔥 Popular Movies</h2>
-
-<div class="movies" id="movies">
-
-<div class="card">
-
-<div class="poster">
-<span>Movie Poster</span>
-</div>
-
-<div class="info">
-
-<h3>Search a movie</h3>
-
-<p>Use the search box above.</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="poster">
-<span>Movie Poster</span>
-</div>
-
-<div class="info">
-
-<h3>Find your movie</h3>
-
-<p>Search by movie name.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-© 2026 RahulMovies
-
-<br>
-
-RahulMovies is an informational website and does not host copyrighted movie files.
-
-</footer>
 
 
 <script>
 
-const searchInput = document.getElementById("searchInput");
-const movies = document.getElementById("movies");
-const loading = document.getElementById("loading");
+const API_KEY = "YOUR_TMDB_API_KEY";
+
+const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+
+const API_URL = "https://api.themoviedb.org/3";
 
 
-searchInput.addEventListener("keypress", function(event){
+async function searchMovies(){
 
-  if(event.key === "Enter"){
-    searchMovie();
-  }
-
-});
-
-
-async function searchMovie(){
-
-  const query = searchInput.value.trim();
+  const query =
+    document.getElementById("searchInput").value.trim();
 
   if(!query){
-
-    alert("Please enter a movie name.");
-
+    alert("Movie name enter karo!");
     return;
-
   }
 
-  loading.style.display = "block";
+  const results =
+    document.getElementById("results");
 
-  movies.innerHTML = "";
+  results.innerHTML =
+    '<div class="loading">🔎 Searching...</div>';
 
   try{
 
-    /*
-      IMDb public suggestion endpoint.
-      This is used only for movie information/search.
-    */
-
-    const url =
-      "https://v3.sg.media-imdb.com/suggestion/x/" +
-      encodeURIComponent(query) +
-      ".json";
-
-    const response = await fetch(url);
-
-    if(!response.ok){
-
-      throw new Error("Search failed");
-
-    }
+    const response = await fetch(
+      `${API_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}&language=en-US`
+    );
 
     const data = await response.json();
 
-    const results = data.d || [];
+    showMovies(data.results || []);
 
-    const movieResults = results
-      .filter(item =>
-        item.id &&
-        (
-          item.q === "feature" ||
-          item.q === "movie" ||
-          item.q === "video"
-        )
-      )
-      .slice(0,12);
+  }catch(error){
+
+    results.innerHTML =
+      '<div class="error">Something went wrong. Please try again.</div>';
+
+  }
+
+}
 
 
-    if(movieResults.length === 0){
+function showMovies(movies){
 
-      movies.innerHTML =
-        '<div class="empty">No movies found. Try another name.</div>';
+  const results =
+    document.getElementById("results");
 
-      loading.style.display = "none";
+  if(movies.length === 0){
 
-      return;
+    results.innerHTML =
+      '<div class="error">Movie nahi mili 😕</div>';
 
-    }
+    return;
+  }
 
+  results.innerHTML =
+    movies.slice(0,12).map(movie => {
 
-    movieResults.forEach(movie => {
-
-      const title =
-        movie.l || movie.q || "Unknown Movie";
+      const poster =
+        movie.poster_path
+        ? IMAGE_URL + movie.poster_path
+        : "https://via.placeholder.com/500x750?text=No+Poster";
 
       const year =
-        movie.y || "N/A";
+        movie.release_date
+        ? movie.release_date.substring(0,4)
+        : "N/A";
 
-      const image =
-        movie.i && movie.i.imageUrl
-          ? movie.i.imageUrl
-          : "";
+      const rating =
+        movie.vote_average
+        ? movie.vote_average.toFixed(1)
+        : "N/A";
 
+      const title =
+        movie.title || "Unknown Movie";
 
-      const imdbUrl =
-        "https://www.imdb.com/title/" +
-        movie.id +
-        "/";
+      const trailerSearch =
+        "https://www.youtube.com/results?search_query="
+        + encodeURIComponent(title + " official trailer");
 
+      return `
 
-      const youtubeUrl =
-        "https://www.youtube.com/results?search_query=" +
-        encodeURIComponent(title + " official trailer");
+        <div class="card">
 
+          <img
+            class="poster"
+            src="${poster}"
+            alt="${title}"
+          >
 
-      const netflixUrl =
-        "https://www.netflix.com/search?q=" +
-        encodeURIComponent(title);
+          <div class="info">
 
+            <h3>${title}</h3>
 
-      const card = document.createElement("div");
+            <p>⭐ Rating: ${rating}/10</p>
 
-      card.className = "card";
+            <p>📅 Release: ${year}</p>
 
+            <div class="buttons">
 
-      card.innerHTML = `
+              <a
+                class="btn"
+                href="${trailerSearch}"
+                target="_blank"
+              >
+                ▶ Trailer
+              </a>
 
-        <div class="poster">
+              <a
+                class="btn secondary"
+                href="https://www.google.com/search?q=${encodeURIComponent(title + " where to watch official")}"
+                target="_blank"
+              >
+                Where to Watch
+              </a>
 
-          ${
-            image
-            ? `<img src="${image}" alt="${title} poster">`
-            : `<span>Movie Poster</span>`
-          }
-
-        </div>
-
-        <div class="info">
-
-          <h3>${escapeHTML(title)}</h3>
-
-          <p>Year: ${year}</p>
-
-          <div class="buttons">
-
-            <a
-              class="btn imdb"
-              href="${imdbUrl}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              IMDb
-            </a>
-
-            <a
-              class="btn youtube"
-              href="${youtubeUrl}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Official Trailer
-            </a>
-
-            <a
-              class="btn netflix"
-              href="${netflixUrl}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Check Netflix
-            </a>
+            </div>
 
           </div>
 
@@ -521,36 +397,47 @@ async function searchMovie(){
 
       `;
 
-
-      movies.appendChild(card);
-
-    });
-
-  }
-
-  catch(error){
-
-    movies.innerHTML =
-      '<div class="empty">Something went wrong. Please try again.</div>';
-
-    console.error(error);
-
-  }
-
-  loading.style.display = "none";
+    }).join("");
 
 }
 
 
-function escapeHTML(text){
+document
+  .getElementById("searchInput")
+  .addEventListener("keypress", function(e){
 
-  const div = document.createElement("div");
+    if(e.key === "Enter"){
+      searchMovies();
+    }
 
-  div.textContent = text;
+  });
 
-  return div.innerHTML;
+
+async function loadPopular(){
+
+  const results =
+    document.getElementById("results");
+
+  try{
+
+    const response = await fetch(
+      `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+
+    showMovies(data.results || []);
+
+  }catch(error){
+
+    results.innerHTML =
+      '<div class="error">Popular movies load nahi ho paayi.</div>';
+
+  }
 
 }
+
+loadPopular();
 
 </script>
 
